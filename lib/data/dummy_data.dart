@@ -53,7 +53,6 @@ const availableCategories = [
     title: 'Summer',
     color: Colors.pink,
   ),
-
 ];
 
 const dummyMeals = [
@@ -141,8 +140,8 @@ const dummyMeals = [
     ],
     steps: [
       'Form 2 patties',
-      'Fry the patties for c. 4 minutes on each side',
-      'Quickly fry the buns for c. 1 minute on each side',
+      'Fry the patties for about 4 minutes on each side',
+      'Quickly fry the buns for about 1 to 2 minutes on each side',
       'Bruch buns with ketchup',
       'Serve burger with tomato, cucumber and onion'
     ],

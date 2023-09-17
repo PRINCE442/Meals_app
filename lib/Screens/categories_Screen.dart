@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:meals_app/Screens/mealsScreen.dart';
 import 'package:meals_app/data/dummy_data.dart';
@@ -8,18 +6,16 @@ import 'package:meals_app/models/meals.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({super.key,
-   //required this.getFavorites,
-    required this.availableMeals});
+  const CategoriesScreen({super.key, required this.availableMeals});
 
-  //final void Function (Meal meal) getFavorites;
   final List<Meal> availableMeals;
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerProviderStateMixin {
+class _CategoriesScreenState extends State<CategoriesScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -31,29 +27,27 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
       duration: const Duration(milliseconds: 300),
       lowerBound: 0.0,
       upperBound: 1.0,
-      );
+    );
 
-      _animationController.forward();
+    _animationController.forward();
   }
 
-     @override
+  @override
   void dispose() {
     _animationController.dispose();
     super.dispose();
   }
-         
+
   void _selectCategory(BuildContext context, Category category) {
-    final filteredMeals = widget.availableMeals 
+    final filteredMeals = widget.availableMeals
         .where(
           (meal) => meal.categories.contains(category.id),
         )
         .toList();
 
-    //Navigator.push(context, route) OR
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
-         // getFavorites: getFavorites,
           title: category.title,
           meals: filteredMeals,
         ),
@@ -63,8 +57,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(animation: _animationController,
-    child: GridView(
+    return AnimatedBuilder(
+      animation: _animationController,
+      child: GridView(
         padding: EdgeInsets.all(14.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -72,26 +67,22 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
             crossAxisSpacing: 20.0,
             mainAxisSpacing: 20.0),
         children: [
-        
           for (final category in availableCategories)
             CategoryGridItem(
               category: category,
               onSelectCategory: () => _selectCategory(context, category),
             ),
         ],
-      
       ),
-     builder: (context, child) =>
-      SlideTransition(position: Tween(
-         begin: const Offset(0, 0.3),
-          end: const Offset(0, 0),
-        ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),),
-       
-      child: child
-      ),
-   
-    
+      builder: (context, child) => SlideTransition(
+          position: Tween(
+            begin: const Offset(0, 0.3),
+            end: const Offset(0, 0),
+          ).animate(
+            CurvedAnimation(
+                parent: _animationController, curve: Curves.easeInOut),
+          ),
+          child: child),
     );
-    
   }
 }

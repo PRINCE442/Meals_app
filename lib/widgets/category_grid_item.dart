@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/models/Category.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem({super.key, required this.category, required this.onSelectCategory});
+  const CategoryGridItem(
+      {super.key, required this.category, required this.onSelectCategory});
 
   final Category category;
   final void Function() onSelectCategory;
@@ -14,7 +15,7 @@ class CategoryGridItem extends StatelessWidget {
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(16.0),
       child: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.0),
           gradient: LinearGradient(

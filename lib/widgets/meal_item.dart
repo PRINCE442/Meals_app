@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meals.dart';
 import 'package:meals_app/widgets/meal_item_trait.dart';
@@ -9,14 +7,14 @@ class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.meal, required this.onSelectMeal});
 
   final Meal meal;
-  final  Function(Meal meal) onSelectMeal;
+  final Function(Meal meal) onSelectMeal;
 
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
   }
 
-  String get AffordabilityText {
+  String get affordabilityText {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);
   }
@@ -32,7 +30,7 @@ class MealItem extends StatelessWidget {
       elevation: 6.0,
       child: InkWell(
         onTap: () {
-          onSelectMeal( meal);
+          onSelectMeal(meal);
         },
         child: Stack(
           children: [
@@ -77,16 +75,16 @@ class MealItem extends StatelessWidget {
                           icon: Icons.schedule,
                           label: '${meal.duration} min',
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         MealItemTrait(
                           icon: Icons.work,
-                           label: complexityText,
-                           ),
-                           SizedBox(width: 15),
+                          label: complexityText,
+                        ),
+                        const SizedBox(width: 15),
                         MealItemTrait(
                           icon: Icons.attach_money,
-                           label: AffordabilityText,
-                           ),
+                          label: affordabilityText,
+                        ),
                       ],
                     ),
                   ],

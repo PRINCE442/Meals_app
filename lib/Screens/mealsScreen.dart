@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/Screens/Meals_details_screen.dart';
 import 'package:meals_app/models/meals.dart';
-import 'package:flutter/src/material/theme.dart';
+
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, 
+  const MealsScreen({
+    super.key,
     this.title,
-    required this.meals, 
-   // required this.getFavorites
-   });
+    required this.meals,
+  });
 
   final String? title;
   final List<Meal> meals;
- // final void Function (Meal meal) getFavorites;
 
-
- selectedMeal( context,Meal meal) {
-     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => MealDetails(meal: meal, 
-     // getFavorites: getFavorites,
+  selectedMeal(context, Meal meal) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MealDetails(
+          meal: meal,
+        ),
       ),
-      ),
-      );
-
+    );
   }
 
   @override
@@ -64,17 +62,17 @@ class MealsScreen extends StatelessWidget {
     if (meals.isNotEmpty) {
       content = ListView.builder(
         itemCount: meals.length,
-        itemBuilder: (context, index) => MealItem(meal: meals[index], 
-        onSelectMeal: (Meal) {selectedMeal(context, Meal);}
-         
-         ),
+        itemBuilder: (context, index) => MealItem(
+            meal: meals[index],
+            onSelectMeal: (Meal) {
+              selectedMeal(context, Meal);
+            }),
       );
     }
 
     if (title == null) {
-     return content;
-
-    } 
+      return content;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -82,14 +80,5 @@ class MealsScreen extends StatelessWidget {
       ),
       body: content,
     );
-    
   }
 }
-
-//  MealsScreen(
-//         title: title,
-//         meals: meals,
-//       ),
-//        if (meals == null) {
-//       print('Sorry, this dish is currently unavalaible');
-//     }

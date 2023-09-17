@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:meals_app/Screens/categories_Screen.dart';
-import 'package:meals_app/Screens/tabs.dart';
-//import 'package:meals_app/Screens/mealsScreen.dart';
-//import 'package:meals_app/data/dummy_data.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:meals_app/Screens/tabs.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -16,7 +14,7 @@ final theme = ThemeData(
   textTheme: GoogleFonts.latoTextTheme(),
 );
 void main() {
-  runApp(const ProviderScope(child:  MealApp()));
+  runApp(const ProviderScope(child: MealApp()));
 }
 
 class MealApp extends StatelessWidget {
@@ -31,4 +29,3 @@ class MealApp extends StatelessWidget {
     );
   }
 }
-
